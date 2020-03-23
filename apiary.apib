@@ -1,0 +1,78 @@
+FORMAT: 1A
+HOST: https://sirius.swisschain.io/
+
+# Sirius - Brokerage API 
+
+Sirius is a API allowing consumers to work with wallets and transfers on many different blockchains.
+
+Brokerage API allowing consumers to work with broker account. Broker account it is one wallet with many internal deposit accounts (personal accounts).
+
+## Broker Accounts [/api/broker-accounts]
+
+Broker account allows you to receive deposits and send withdrawals in all supported blockchains. Broker account has accounts associated with it.
+
+Each deposit and withdrawal can be associated with particular account and each account can be associated with anything you need to. Thanks to this, you can identify to which of your user, contract, bill or whatever particular transfer is related to.
+
+### Creates a broker account [POST]
+
+Create a new broker account
+
++ Request (application/json)
+    + Headers
+
+            X-Request-ID: number
+            Tenant-Id: Put your "customer ID" (temporally)
+    
+    + Body
+
+        {
+            "name": "Name of broker account"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "name": "Name of broker account",
+                "brokerAccountId": "ID of Broker account"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "type": "string",
+              "title": "string",
+              "status": 0,
+              "detail": "string",
+              "instance": "string",
+              "extensions": {
+                "additionalProp1": {},
+                "additionalProp2": {},
+                "additionalProp3": {}
+              }
+            }
+            
+## Is Alive [/api/isalive]
+
+Service availability validation
+
+### API info [GET]
+
+Get is alive status.
+
++ Response 200 (application/json)
+
+    + Body
+    
+        {
+          "name": "Api",
+          "version": "1.0.0.0",
+          "env": null,
+          "hostName": "api-6d9cf8c746-qz478",
+          "isDebug": false,
+          "startedAt": "2020-03-23T13:45:41.5860463Z",
+          "stateIndicators": []
+        }
